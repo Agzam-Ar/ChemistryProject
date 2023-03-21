@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<tags>Cl2,KBr,Br2,KCl</tags>
+	<reactions>Cl2 + 2KBr -> Br2 + 2KCl</reactions>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Реакция хлора с бромидом калия</title>
+	<script type="text/javascript" src="interface.js" defer></script>
+	<script type="text/javascript" src="../formatter.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="interface.css">
+
+	<style type="text/css">
+		html{aspect-ratio:2;overflow:hidden;font-size:5vh;padding:0;margin:1vh1vh;font-family:sans-serif;}
+		body{padding:0;margin:0;background:#EEE;width:100%;height:100%;transition:.2s;}
+		#loading{position:fixed;display:block;user-select:none;z-index:9999999;width:100vw;height:100vh;background:#EEE;transition:.5s;}
+		#loading[loaded="1"]{opacity:0;pointer-events:none;}
+		tags,reactions{display:none;}
+
+		.action-box {
+			position: fixed;
+			display: block;
+			border-radius: .25em;
+			border: .25em #FFFFFF01 solid;
+			transition: .1s ease-in-out;
+		}
+
+		.action-box > * {
+			width: 100%;
+			height: 100%;
+		}
+
+		.flask {
+			top: 20%;
+			left: 23%;
+			width: 20vw;
+			height: 60vh;
+/*			mix-blend-mode: overlay;*/
+		}
+
+		.straw {
+			top: 10%;
+			left: 7%;
+			width: 30vw;
+			height: 60vh;
+/*			mix-blend-mode: overlay;*/
+		}
+
+		#level-result-c, #level-result-i, #flask-kbr, #straw-cl2 {
+			transition: .75s ease-in-out;
+		}
+
+		#flask-br2, #flask-kcl {
+			transition: 1s linear;
+			transition-delay: 1s;
+		}
+
+		.action-box[disabled="1"] {
+			pointer-events: none;
+		}
+
+
+		.action-box:hover[disabled="0"] {
+			box-shadow: 0 0 0 .25em #ffc107;
+    			z-index: 9999;
+		}
+
+		.action-box:hover[disabled="0"]:after {
+			content: attr(tip);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: fit-content;
+			height: fit-content;
+			transform: translate(-50%, -50%);
+
+			display: flex;
+    		display: flex;
+    		align-items: center;
+    		justify-content: center;
+    		align-content: center;
+    		text-align: center;
+	
+    		background: #00000077;
+    		padding: .25em .5em;
+    		color: #FFF;
+
+    		z-index: 9999;
+		}
+
+		svg, button, br, .action-box, #loading {
+			user-select: none;
+		}
+	</style>
+	<script type="text/javascript">
+
+		function flaskClick(e) {
+			if(e.getAttribute('disabled') == '1') return;
+
+			var kbr = document.getElementById('flask-kbr');
+			kbr.setAttribute("height", "75%");
+			kbr.setAttribute("y", "25%");
+
+			document.getElementsByClassName('straw')[0].setAttribute("disabled", 0);
+			e.setAttribute("disabled", 1);
+			markComplited(1);
+		}
+
+		function strawClick(e) {
+			var cl2 = document.getElementById('straw-cl2');
+			cl2.setAttribute("width", "100%");
+
+			var br2 = document.getElementById('flask-br2');
+			br2.setAttribute("height", "15%");
+			br2.setAttribute("y", "85%");
+
+			var kcl = document.getElementById('flask-kcl');
+			kcl.style.opacity = 1;
+
+			e.setAttribute("disabled", 1);
+			setTimeout(function() {
+				cl2.style.opacity = 0;
+			}, 1000);
+			markComplited(2);
+		}
+		
+		function markComplited(id) {
+			document.getElementById('tip' + id).setAttribute("ok", 1);
+		}
+
+		window.onload = function() {
+			setTimeout(function() {
+				document.getElementById('loading').setAttribute('loaded', "1");
+			}, 100);
+		}
+	</script>
+</head>
+<body>
+	<div id="loading"></div>
+	<div id="tips">
+		<div class="tip" id="tip1">Налить <code class="structure">KBr</code></div>
+		<div class="tip" id="tip2">Пустить <code class="structure">Cl_2_</code></div>
+		<br>
+		<div class="tip"> Итоговое уравнение: <br><br><code class="structure">Cl_2_ + 2KBr -> Br_2_ + 2KCl</code></div>
+	</div>
+<div disabled="0" class="action-box flask" tip="Налить KBr" onclick="flaskClick(this)">
+	<svg id="flask-svg" viewBox="-5 -5 60 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-linecap="round">
+		<linearGradient id="kbr">
+			<stop offset="5%" stop-color="#9999FF"/>
+			<stop offset="95%" stop-color="#FFFFFF"/>
+		</linearGradient>
+		<linearGradient id="br2">
+			<stop offset="5%" stop-color="#333300"/>
+			<stop offset="95%" stop-color="#000"/>
+		</linearGradient>
+		<linearGradient id="kcl">
+			<stop offset="5%" stop-color="#E2522B"/>
+			<stop offset="95%" stop-color="#B24A23"/>
+		</linearGradient>
+
+
+		<g fill="#000">
+		    <circle cx="25" cy="75" r="22"/>
+		    <rect x="15" y="15" width="20" height="45"></rect>
+		    <path stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		</g>
+		<mask id="flask-mask">
+		    <g fill="#777" stroke="#777" stroke-width="5">
+		        <circle cx="25" cy="75" r="22"/>
+		        <rect x="15" y="15" width="20" height="40"></rect>
+		        <path stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		    </g>
+		    <g fill="#FFF">
+		        <circle cx="25" cy="75" r="22"/>
+		        <rect x="15" y="15" width="20" height="45"></rect>
+		        <path stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		    </g>
+		</mask>
+		<g stroke="#333" stroke-width="10">
+		     <circle cx="25" cy="75" r="22"/>
+		     <rect x="15" y="15" width="20" height="45"></rect>
+		     <path stroke-width="10" d="M12.5,15 L37.5,15"></path>
+		</g>
+		<g mask="url(#flask-mask)">
+		     <rect fill="#AAA" width="100%" height="100%"></rect>
+		     <rect id="flask-kbr" style="opacity: .5;" fill="url(#kbr)" y="100%" width="100%" height="0%"></rect> 
+		     <rect style="opacity: 0;" id="flask-kcl" fill="url(#kcl)" y="25%" width="100%" height="75%"></rect> 
+		     <rect id="flask-br2" fill="url(#br2)" y="100%" width="100%" height="0%"></rect> 
+		</g>
+	</svg>
+</div>
+
+<div disabled="1" class="action-box straw" tip="Запустить Cl2" onclick="strawClick(this)">
+	<svg id="straw-svg" viewBox="-5 -5 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-linecap="round" stroke-linejoin="round" fill="none">
+		<linearGradient id="white">
+			<stop offset="10%" stop-color="#EEE"/>
+			<stop offset="50%" stop-color="#EEEEEE00"/>
+		</linearGradient>
+		<linearGradient id="cl2">
+			<stop offset="5%" stop-color="#BBB546"/>
+			<stop offset="95%" stop-color="#7F8022"/>
+		</linearGradient>
+
+		<g fill="#000">
+		    <!-- <circle cx="25" cy="75" r="22"/> -->
+		    <!-- <rect x="15" y="15" width="20" height="45"></rect> -->
+		</g>
+		<mask id="straw-mask">
+		   	<path stroke="#777" stroke-width="10" d="M10,25 L95,10 L100,90"></path>
+		   	<path stroke="#FFF" stroke-width="5" d="M10,25 L95,10 L100,90"></path>
+		</mask>
+		<path stroke="#333" stroke-width="15" d="M10,25 L95,10 L100,90"></path>
+		<g stroke="#333" stroke-width="10">
+		     <!-- <circle cx="25" cy="75" r="22"/> -->
+		     <!-- <rect x="15" y="15" width="20" height="45"></rect> -->
+		     <!-- <path stroke-width="10" d="M12.5,15 L37.5,15"></path> -->
+		</g>
+		<g mask="url(#straw-mask)">
+		     <rect fill="#AAA" width="100%" height="100%"></rect>
+		     <rect id="straw-cl2" fill="url(#cl2)" y="0%" width="0%" height="100%"></rect> 
+		</g>
+		<rect fill="url(#white)" width="100%" height="100%"></rect>
+	</svg>
+</div>
+
+</body>
+</html>

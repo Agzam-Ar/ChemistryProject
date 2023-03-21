@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="../markup.css">
+	<script type="text/javascript" src="script.js" defer></script>
+	<script type="text/javascript" src="../markup.js" defer></script>
+	<title>Мои работы</title>
+</head>
+<body>
+	<div id="header">
+		<div class="title">Мои работы</div>
+	</div>
+	<div id="body">
+		<h1>Новая статья</h1>
+		<div class="shortkeys-box">
+			<button onclick="shortkeys('B')"><b>B</b></button>
+			<button onclick="shortkeys('I')"><i>I</i></button>
+			<button onclick="shortkeys('U')"><u>U</u></button>
+			<button onclick="shortkeys('S')"><s>S</s></button>
+			<button onclick="shortkeys('SUB')">X<sub>n</sub></button>
+			<button onclick="shortkeys('SUP')">X<sup>n</sup></button>
+			<button onclick="shortkeys('H1')">Заголовок</button>
+			<button onclick="shortkeys('H3')">Подзаголовок</button>
+			<button onclick="shortkeys('TASK')">Задача</button>
+		</div>
+		<div id="editor" class="editor" contenteditable>Helloworld!</div>
+
+		<h3>Предварительный просмотр:</h3>
+		<div id="editor-result" class="editor"></div>
+		<br>
+		<button>Отправить</button>
+	</div>
+
+</body>
+</html>

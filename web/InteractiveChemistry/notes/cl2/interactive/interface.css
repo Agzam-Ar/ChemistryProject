@@ -1,0 +1,108 @@
+.interface-box {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 2vh;
+}
+
+.interface-restart {
+	outline: none;
+	border: none;
+
+	font-family: monospace;
+	background: #ddd;
+	color: #333;
+	padding: 1vh 2vh;
+}
+
+.interface-restart:hover, .interface-restart:focus {
+	box-shadow: 0 0 0 .25em #bbb;
+}
+
+.interface-restart:active {
+	box-shadow: 0 0 0 .25em #bbb;
+}
+
+
+
+code {
+	background: #DDD;
+	padding: 1vh 3vh;
+	border-radius: 1vh;
+}
+
+#tips {
+	color: #111;
+	display: block;
+	position: fixed;
+	right: 0;
+	top: 0;
+	height: 100vh;
+	padding: 5vh;
+}
+.tip {
+	display: block;
+	margin: 5vh 0;
+	font-size: 75%;
+	user-select: auto !important;
+}
+.tip:after {
+	content: "";
+	display: block;
+	width: 95%;
+	height: .5vh;
+	position: absolute;
+	background: #333;
+	transform: translate(-2.5%, calc(-0.25vh - 0.5em)) scaleX(0);
+	opacity: 0;
+	transition: .2s ease-in-out;
+}
+.tip[ok="1"] {
+	color: #999;
+}
+.tip[ok="1"]:after {
+	opacity: 1;
+	transform: translate(-2.5%, calc(-0.25vh - 0.5em));
+}
+
+.action-box {
+	position: fixed;
+	display: block;
+	transition: .1s ease-in-out;
+	border-radius: .25em;
+
+	border: .25em #FFFFFF01 solid;
+}
+
+.action-box > * {
+	width: 100%;
+	height: 100%;
+}
+
+.action-box:hover[disabled="0"] {
+	box-shadow: 0 0 0 .25em #ffc107;
+    z-index: 9999;
+}
+
+.action-box:hover[disabled="0"]:after {
+	content: attr(tip);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: fit-content;
+	height: fit-content;
+	transform: translate(-50%, -50%);
+
+	display: flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+
+	background: #00000077;
+	padding: .25em .5em;
+	color: #FFF;
+
+	z-index: 9999;
+}

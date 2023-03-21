@@ -1,0 +1,3 @@
+Cl2,KBr,Br2,KCl,	/notes/cl2/interactive/chlorine_with_kbr.html	Реакция хлора с бромидом калия
+Cl2,Cu,Fe,	/notes/cl2/interactive/chlorine_with_metals.html	Реакция хлора с металлами
+MnO2,HCl,MnCl2,H2O,Cl,,	/notes/cl2/interactive/obtaining_chlorine.html	Получение хлора в лаборатории

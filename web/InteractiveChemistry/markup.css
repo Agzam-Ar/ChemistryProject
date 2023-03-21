@@ -1,0 +1,46 @@
+task {
+    display: block;
+    width: calc(100% - 4.2em);
+    background: #FFF;
+
+    box-shadow: 0 0 1em #00000011;
+    padding: 1em 2em;
+    border-radius: 0 .5em .5em 0;
+    margin: 1em 0;
+    border-left: .2em solid var(--main-color);
+}
+
+question > b {
+    display: block;
+    padding: 0;
+    margin: 0 0 -.5em 0;
+}
+
+answer {
+    user-select: none !important;
+    color: #DDD;
+}
+
+answer > * {
+    min-height: 2em;
+    background: #DDD;
+    color: #DDD;
+    transition: .2s ease-in-out;
+    border-radius: 1em;
+}
+
+answer[show="0"]:hover > * {
+    min-height: 2em;
+    border-radius: 1em;
+    filter: brightness(0.85);
+}
+
+answer[show="1"]:hover {
+
+}
+
+answer[show="1"] > * {
+    background: initial;
+    color: initial;
+    border-radius: 1em;
+}

@@ -1,0 +1,17 @@
+<svg id="svg" viewBox="0 0 100 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<mask id="mask">
+    <g fill="#777" stroke="#777" stroke-width="5">
+        <circle cx="25" cy="125" r="22"/>
+        <rect x="15" y="15" width="20" height="100"></rect>
+        <path stroke-linecap="round" stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke="#777" stroke-width="15" fill="none" d="M30,50 L75,25 L100,50 "></path>
+    </g>
+    <g fill="#FFF" >
+        <circle cx="25" cy="125" r="22"/>
+        <rect x="15" y="15" width="20" height="100"></rect>
+        <path stroke-linecap="round" stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke="#FFF" stroke-width="10" fill="none" d="M30,50 L75,25 L100,50 "></path>
+    </g>
+</mask>
+</svg>

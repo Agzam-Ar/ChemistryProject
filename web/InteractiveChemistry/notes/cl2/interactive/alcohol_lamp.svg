@@ -1,0 +1,137 @@
+<svg id="svg" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        @keyframes afirer {
+            0% { 
+                 rotate: 0;
+                 opacity: 1;
+                 transform: translate(-12.5px, -12.5px) scaleY(1);
+                <!-- transform: rotate(0deg); -->
+                <!-- transform-origin: 0% -50%; -->
+            }
+
+            50% {
+                transform: translate(-12.5px, -12.5px) scaleY(1);
+                <!-- transform: scale(2) rotate(180deg); -->
+            }
+            100% { 
+                transform: translate(-12.5px, -12.5px) scaleY(1) translateY(-50px);
+
+                    opacity: 0;
+                 rotate: 360deg;
+                <!-- transform-origin: 0% -10%; -->
+            }
+        }
+        @keyframes afirel {
+            0% { 
+                 rotate: 0;
+                 opacity: 1;
+                 transform: translate(-12.5px, -12.5px) scaleY(1);
+                <!-- transform: rotate(0deg); -->
+                <!-- transform-origin: 0% -50%; -->
+            }
+
+            50% {
+                transform: translate(-12.5px, -12.5px) scaleY(1);
+                <!-- transform: scale(2) rotate(180deg); -->
+            }
+            100% { 
+                transform: translate(-12.5px, -12.5px) scaleY(1) translateY(-50px);
+
+                    opacity: 0;
+                 rotate: -360deg;
+                <!-- transform-origin: 0% -10%; -->
+            }
+        }
+
+        .fire {
+            <!-- transform-origin: center; -->
+            animation: 1s infinite afirel ease-out; <!-- linear -->
+            mix-blend-mode: plus-lighter;
+        }
+        .firer {
+            <!-- transform-origin: center; -->
+            animation: 1s infinite afirer ease-out; <!-- linear -->
+            mix-blend-mode: plus-lighter;
+        }
+
+        .pfire {
+            transform-origin: center;
+        }
+
+        <!-- .fire:nth-chil(1) {animation-duration: 1s;} -->
+        <!-- .fire:nth-chil(2) {animation-duration: 2s;} -->
+        <!-- .fire:nth-chil(3) {animation-duration: 3s;} -->
+        <!-- .fire:nth-chil(4) {animation-duration: 4s;} -->
+        .f1 {animation-duration: 1s;}
+        .f2 {animation-duration: 2s;}
+        .f3 {animation-duration: 3s;}
+        .f4 {animation-duration: 4s;}
+        .f5 {animation-duration: 5s;}
+        .f6 {animation-duration: 6s;}
+        .f7 {animation-duration: 7s;}
+        .f8 {animation-duration: 8s;}
+.flm-part {
+  background-color: currentColor;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(60deg) skewX(0deg) scale(1);
+  border-color: currentColor;
+  width: 2rem;
+  height: 2rem;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+    </style>
+    <!-- ff1c04 -->
+    <g fill="#FF6F3F"  class="pfire" transform="translate(100, 50)">
+        <!-- <rect class="fire f1" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f2" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f3" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f4" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f5" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f6" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f7" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="fire f8" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+
+        <rect class="firer f1" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f2" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f3" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f4" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f5" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f6" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f7" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect>
+        <rect class="firer f8" x="0" y="0" width="25" height="25" rx="10" ry="3"></rect> -->
+
+        <div class="flm-part flipped red"></div>
+        <div class="flm-part orng"></div>
+        <div class="flm-part flipped ylw"></div>
+        <div class="flm-part wht"></div>
+    </g>
+
+         <!-- <rect fill="#AAA" width="100%" height="100%"></rect> -->
+    <!-- <mask id="mask"> -->
+        <g fill="#777" stroke="#777" stroke-width="15">
+            <!-- <circle cx="25" cy="125" r="22"/> -->
+            <rect x="75" y="75" width="50" height="25" rx="5"></rect>
+            <!-- <path stroke-linecap="round" stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path> -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke="#777" stroke-width="15" fill="none" d="M75,100 L10,125 L25,190 L175,190 L190,125 L125,100 Z"></path>
+        </g>
+        <g fill="#FFF">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke="#FFF" stroke-width="5" d="M75,100 L10,125 L25,190 L175,190 L190,125 L125,100 Z"></path>
+            <!-- <circle cx="25" cy="125" r="22"/> -->
+            <!-- <rect x="15" y="15" width="20" height="100"></rect> -->
+            <!-- <path stroke-linecap="round" stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path> -->
+            <!-- <path stroke-linecap="round" stroke-linejoin="round" stroke="#FFF" stroke-width="10" fill="none" d="M30,50 L75,25 L100,50 "></path> -->
+        </g>
+
+
+    <!-- </mask> -->
+
+    <!-- <rect fill="#333" width="100%" height="100%"></rect> -->
+    <!--<g  mask="url(#mask)">
+             <rect id="level" fill="#D82FC9" y="50%" width="100%" height="50%"></rect>
+    </g> -->
+   
+    <!-- stroke="#777" stroke-width="2"  -->
+</svg>

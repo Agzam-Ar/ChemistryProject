@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<tags>MnO2,HCl,MnCl2,H2O,Cl,</tags>
+	<reactions>MnO2 + 4HCl -> MnCl2 + 2H2O + Cl2</reactions>
+	<title>Получение хлора в лаборатории</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="interface.js" defer></script>
+	<script type="text/javascript" src="../formatter.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="interface.css">
+	<style type="text/css">
+		tags,reactions{display:none;}
+
+		html {
+			aspect-ratio: 2;
+			overflow: hidden;
+			font-size: 5vh;
+			padding: 0;
+			margin: 1vh 1vh;
+			font-family: sans-serif;
+/*			background: linear-gradient(#000, #333);*/
+		}
+
+		body {
+			padding: 0;
+			margin: 0;
+			background: #EEE;
+			width: 100%;
+			height: 100%;
+/*			filter: blur(15px);*/
+			transition: .2s;
+/*			border: 1px #F00 solid;*/
+		}
+
+
+		.action-box {
+			position: fixed;
+			display: block;
+			transition: .1s ease-in-out;
+/*			box-shadow: 0 0 .5em -.1em #ffc107;*/
+			border-radius: .25em;
+
+			border: .25em #FFFFFF01 solid;
+		}
+
+		.action-box > * {
+			width: 100%;
+			height: 100%;
+		}
+
+		.wurtz {
+			top: 20vh;
+			left: 10vw;
+			width: 20vw;
+			height: 60vh;
+		}
+
+		.flask {
+			top: 35%;
+			left: 23%;
+			width: 10vw;
+			height: 30vh;
+/*			z-index: 10;*/
+		}
+
+		.separatingfunnel {
+			top: -50vh;
+			left: 5vw;
+			width: 20vw;
+			height: 40vh;
+			z-index: 999;
+			mix-blend-mode: screen;
+			transition: .5s ease-in-out;
+		}
+
+		.alcohol-lamp {
+			top: 60%;
+			left: 10%;
+			width: 10%;
+			height: 10%;
+			height: fit-content;
+		}
+
+		.action-box:hover[disabled="0"] {
+			box-shadow: 0 0 0 .25em #ffc107;
+    			z-index: 9999;
+		}
+
+		.action-box:hover[disabled="0"]:after {
+			content: attr(tip);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: fit-content;
+			height: fit-content;
+			transform: translate(-50%, -50%);
+
+			display: flex;
+    			display: flex;
+    			align-items: center;
+    			justify-content: center;
+    			align-content: center;
+    			text-align: center;
+	
+    			background: #00000077;
+    			padding: .25em .5em;
+    			color: #FFF;
+
+    			z-index: 9999;
+		}
+
+		#wurtz-level-mno2, #wurtz-level-nacl, #wurtz-level-h2so4, #separatingfunnel-level-hcl {
+			transition: .5s ease-in-out;
+		}
+
+		#wurtz-level-result {
+			transition: .75s ease-in-out;
+		}
+
+		#wurtz-level-cl2 {
+			transition: 5s;
+		}
+
+		.f1 { 
+			color: #ffffff; 
+			animation: fa1 3s; 
+			box-shadow: 0 0 .125vh 0.025vh #ffffff; 
+		}
+
+		.f2 { 
+  			color: #ffd700;
+  			top: 1.8rem; 
+  			animation: fa2 2.5s; 
+			box-shadow: 0 0 .25vh .05vh #ffd700; 
+			opacity: .5;
+  		}
+
+		.f3 { 
+			color: #ffa500; 
+			top: 3.6rem; 
+			animation: fa3 2s; 
+			box-shadow: 0 0 .5vh .1vh #ffa500; 
+			opacity: .5;
+		}
+
+		.f4 { 
+  			color: #ed1414; 
+  			top: 5.4rem; 
+  			animation: fa4 1.5s;
+			box-shadow: 0 0 1vh .2vh #ed1414; 
+			opacity: .5;
+  		}
+
+  		.alcohol-lamp[flame="0"] > .flame-box {
+  			opacity: 0;
+  			filter: brightness(5.0);
+  		}
+
+		.flame-box {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: -70%;
+			top: 20%;
+			transform: rotate(45deg) skewY(4deg) scale(1);
+			transition: .2s ease-in;
+		}
+
+		.flame {
+			background-color: currentColor;
+			position: absolute;
+			border-color: currentColor;
+			width: 20%;
+			height: 20%;
+			left: 50%;
+			top: -50%;
+			border-radius: 0 50% 50% 50%;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+
+			mix-blend-mode: plus-lighter;
+		}
+
+		@keyframes fa1 {
+			0% {		transform: rotate(0deg) 		skewY(0deg) scale(1)}
+			25% {	transform: rotate(-15deg) 	skewY(5deg) scale(1.1)}
+			50% {	transform: rotate(0deg) 		skewY(0deg) scale(1)}
+			75% {	transform: rotate(15deg) 	skewY(5deg) scale(1.1)}
+			100% {	transform: rotate(0deg) 		skewY(0deg) scale(1)}
+		}
+		
+		@keyframes fa2 {
+			0% {		transform: rotate(0deg) 		skewX(0deg) 	scale(1.4)}
+			25% { 	transform: rotate(10deg) 	skewX(5deg) 	scale(1.5)}
+			50% { 	transform: rotate(0deg) 		skewX(-5deg) 	scale(1.4)}
+			75% { 	transform: rotate(-10deg) 	skewX(5deg) 	scale(1.5)}
+			100% {	transform: rotate(0deg) 		skewX(0deg) 	scale(1.4)}
+		}
+		
+		@keyframes fa3 {
+			0% {		transform: rotate(0deg) 		skewX(0deg) scale(1.6)}
+			25% { 	transform: rotate(10deg) 	skewX(5deg) scale(1.7)}
+			50% { 	transform: rotate(0deg) 		skewX(0deg) scale(1.6)}
+			75% { 	transform: rotate(-10deg) 	skewX(5deg) scale(1.7)}
+			100% {	transform: rotate(0deg) 		skewX(0deg) scale(1.6)}
+		}
+
+		@keyframes fa4 {
+			0% {		transform: rotate(0deg) 		skewX(0deg) 	scale(1.8)}
+			25% { 	transform: rotate(5deg) 		skewX(5deg) 	scale(2)}
+			50% { 	transform: rotate(0deg) 		skewX(0deg) 	scale(1.8)}
+			75% { 	transform: rotate(-5deg) 	skewX(5deg) 	scale(2)}
+			100% {	transform: rotate(0deg) 		skew(0deg) 	scale(1.8)}
+		}
+
+		svg, button, br, .action-box, #loading {
+			user-select: none;
+		}
+
+		#loading {
+			position: fixed;
+			display: block;
+			z-index: 9999999;
+			width: 100vw;
+			height: 100vh;
+			background: #EEE;
+			transition: .5s;
+		}
+
+		#loading[loaded="1"] {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		#tips {
+			color: #111;
+			display: block;
+			position: fixed;
+			right: 0;
+			top: 0;
+			height: 100vh;
+			padding: 5vh;
+		}
+
+		code {
+			background: #DDD;
+			padding: 1vh 3vh;
+			border-radius: 1vh;
+		}
+
+		.tip {
+			display: block;
+			margin: 5vh 0;
+			font-size: 75%;
+			user-select: auto !important;
+		}
+
+		.tip:after {
+			content: "";
+			display: block;
+			width: 95%;
+			height: .5vh;
+			position: absolute;
+			background: #333;
+			transform: translate(-2.5%, calc(-0.25vh - 0.5em)) scaleX(0);
+			opacity: 0;
+			transition: .2s ease-in-out;
+		}
+
+		.tip[ok="1"] {
+			color: #999;
+		}
+		
+		.tip[ok="1"]:after {
+			opacity: 1;
+			transform: translate(-2.5%, calc(-0.25vh - 0.5em));
+		}
+	</style>
+	<script type="text/javascript">
+
+		let wurtzClicks = 0;
+
+		function wurtzClick(e) {
+			if(e.getAttribute('disabled') == '1') return;
+			if(wurtzClicks == 0) {
+				var eWurtzLevel = document.getElementById('wurtz-level-mno2');
+				eWurtzLevel.setAttribute("height", "10%");
+				eWurtzLevel.setAttribute("y", "90%");
+				e.setAttribute("tip", "Установить делительную воронку");
+				markComplited(1);
+			}
+			if(wurtzClicks == 1) {
+				var eWurtzLevel = document.getElementsByClassName('separatingfunnel')[0];
+				eWurtzLevel.style.top = "5vh"
+				e.setAttribute("tip", "Налить 3 мл серной кислоты");
+				markComplited(2);
+				e.setAttribute("disabled", true);
+				e.disabled = true;
+			}
+			wurtzClicks++;
+		}
+
+		function markComplited(id) {
+			document.getElementById('tip' + id).setAttribute("ok", 1);
+		}
+
+		function alcoholLampClick(e) {
+			if(e.getAttribute('disabled') == '1') return;
+			e.setAttribute("flame", 1);
+			e.setAttribute("disabled", "1");
+			document.body.style.background = "#151515";
+			var eWurtzLevel = document.getElementById('wurtz-level-result');
+			eWurtzLevel.style.opacity = 1;
+			var eWurtzLevel = document.getElementById('wurtz-level-cl2');
+			eWurtzLevel.style.opacity = 1;
+			e.disabled = true;
+			markComplited(4);
+		}
+
+		function flaskClick(e) {
+			if(e.getAttribute('disabled') == '1') return;
+			console.log(e);
+			e.style.transition = "1s";
+			e.style.top = "50%";
+			e.setAttribute("disabled", true);
+			e.disabled = true;
+			markComplited(5);
+		}
+
+		let separatingfunnelClicks = 0;
+		function separatingfunnelClick(e) {
+			if(e.getAttribute('disabled') == '1') return;
+			if(separatingfunnelClicks == 0) {
+				var eSparatingfunnelLevel = document.getElementById('separatingfunnel-level-hcl');
+				eSparatingfunnelLevel.setAttribute("height", "20%");
+				eSparatingfunnelLevel.setAttribute("y", 	"25%");
+				e.setAttribute("tip", "Отрыть клапан");
+				markComplited(3);
+			}
+			if(separatingfunnelClicks == 1) {
+				var eSparatingfunnelLevel = document.getElementById('separatingfunnel-level-hcl');
+				eSparatingfunnelLevel.style.transition = "1s";
+				eSparatingfunnelLevel.setAttribute("height", "0%");
+				eSparatingfunnelLevel.setAttribute("y", 	"45%");
+
+				var eWurtzLevel = document.getElementById('wurtz-level-mno2');
+				eWurtzLevel.style.transition = "1s";
+				eWurtzLevel.setAttribute("height", "20%");
+				eWurtzLevel.setAttribute("y", "80%");
+				markComplited(4);
+
+				var eResults = document.getElementsByClassName('level-result');
+				for (var i = 0; i < eResults.length; i++) {
+					var r = eResults[i];
+					r.style.transition = "1s";
+					r.style.opacity = "1";
+				}
+
+				var eFlask = document.getElementsByClassName('flask')[0];
+				eFlask.setAttribute('tip', "Закрыть колбу")
+				eFlask.setAttribute("disabled", 0);
+				eFlask.disabled = false;
+				e.setAttribute("disabled", true);
+				e.disabled = true;
+			}
+			separatingfunnelClicks++;
+		}
+
+		window.onload = function() {
+			setTimeout(function() {
+				document.getElementById('loading').setAttribute('loaded', "1");
+			}, 100);
+		}
+	</script>
+</head>
+<body>
+	<div id="loading"></div>
+
+<div id="tips">
+	<div class="tip" id="tip1">Насыпьте <code>1г</code> оксида марганца (IV) <code class="structure">MnO_2_</code></div>
+	<div class="tip" id="tip2">Установить делительную воронку</div>
+	<div class="tip" id="tip3">Налить <code>HCl</code> в делительную воронку</div>
+	<div class="tip" id="tip4">Открыть клапан делительной воронки</div>
+	<div class="tip" id="tip5">Закрыть колбу с хлором и оставть для следующих опытов</div>
+	<br>
+	<div class="tip"> Итоговое уравнение: <br><br><code class="structure">MnO_2_ + 4HCl -> MnCl_2_ + 2H_2_O + Cl_2_/\</code></div>
+</div>
+
+<div disabled="0" class="action-box wurtz" tip="Насыпать оксид марганца (IV)" onclick="wurtzClick(this)">
+	<svg id="wurtz-svg" viewBox="-5 0 110 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-linecap="round" stroke-linejoin="round">
+		<linearGradient id="nacl">
+			<stop offset="5%" stop-color="#FFF"/>
+			<stop offset="95%" stop-color="#777"/>
+		</linearGradient>
+		<linearGradient id="mno2">
+			<stop offset="5%" stop-color="#333"/>
+			<stop offset="95%" stop-color="#000"/>
+		</linearGradient>
+		<linearGradient id="h2so4">
+			<stop offset="5%" stop-color="#FFFF0033"/>
+			<stop offset="95%" stop-color="#AAAA0033"/>
+		</linearGradient>
+		<linearGradient id="result">
+			<stop offset="5%" stop-color="#BBB546"/>
+			<stop offset="95%" stop-color="#7F8022"/>
+		</linearGradient>
+		<linearGradient id="cl2">
+			<stop offset="5%" stop-color="#BBB546"/>
+			<stop offset="95%" stop-color="#7F8022"/>
+		</linearGradient>
+
+		<mask id="wurtz-mask">
+		    <g fill="#777" stroke="#777" stroke-width="5">
+		        <circle cx="25" cy="125" r="22"/>
+		        <rect x="15" y="15" width="20" height="100"></rect>
+		        <path d="M12.5,15 L37.5,15"></path>
+		        <path stroke-width="15" fill="none" d="M30,50 L75,25 L90,50 "></path>
+		    </g>
+		    <g fill="#FFF">
+		        <circle cx="25" cy="125" r="22"/>
+		        <rect x="15" y="15" width="20" height="100"></rect>
+		        <path stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		        <path stroke="#FFF" stroke-width="10" fill="none" d="M30,50 L75,25 L90,50 "></path>
+		    </g>
+		</mask>
+
+		<g stroke="#333" fill="none" stroke-width="10">
+		    <circle cx="25" cy="125" r="22"/>
+		    <rect x="15" y="15" width="20" height="100"></rect>
+		    <path stroke-width="10" d="M12.5,15 L37.5,15"></path>
+		    <path stroke-width="20" d="M30,50 L75,25 L90,50"></path>
+		</g>
+
+		<g mask="url(#wurtz-mask)">
+		     <rect fill="#AAA" width="100%" height="100%"></rect>
+		     <rect class="level-result" style="opacity: 0;" fill="url(#result)" y="0%" width="100%" height="100%"></rect>
+		     <rect id="wurtz-level-mno2" fill="url(#mno2)" y="100%" width="100%" height="0%"></rect> 
+		     <rect id="wurtz-level-h2so4" fill="url(#h2so4)" y="80%" width="100%" height="0%"></rect>
+		     <rect id="wurtz-level-cl2" style="opacity: 0;" fill="url(#cl2)" y="0%" width="100%" height="65%"></rect>
+		</g>
+
+	</svg>
+</div>
+
+<div disabled="1" class="action-box flask" tip="" onclick="flaskClick(this)">
+	<svg id="flask-svg" viewBox="-5 -5 60 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-linecap="round">
+		<linearGradient id="nacl">
+			<stop offset="5%" stop-color="#FFF"/>
+			<stop offset="95%" stop-color="#777"/>
+		</linearGradient>
+		<linearGradient id="mno2">
+			<stop offset="5%" stop-color="#333"/>
+			<stop offset="95%" stop-color="#000"/>
+		</linearGradient>
+		<linearGradient id="result">
+			<stop offset="5%" stop-color="#BBB546"/>
+			<stop offset="95%" stop-color="#7F8022"/>
+		</linearGradient>
+		<linearGradient id="cl2">
+			<stop offset="5%" stop-color="#BBB546"/>
+			<stop offset="95%" stop-color="#7F8022"/>
+		</linearGradient>
+
+		<g fill="#000">
+		    <circle cx="25" cy="75" r="22"/>
+		    <rect x="15" y="15" width="20" height="45"></rect>
+		    <path stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		</g>
+		<mask id="flask-mask">
+		    <g fill="#777" stroke="#777" stroke-width="5">
+		        <circle cx="25" cy="75" r="22"/>
+		        <rect x="15" y="15" width="20" height="40"></rect>
+		        <path stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		    </g>
+		    <g fill="#FFF">
+		        <circle cx="25" cy="75" r="22"/>
+		        <rect x="15" y="15" width="20" height="45"></rect>
+		        <path stroke="#777" stroke-width="5" d="M12.5,15 L37.5,15"></path>
+		    </g>
+		</mask>
+		<g stroke="#333" stroke-width="10">
+		     <circle cx="25" cy="75" r="22"/>
+		     <rect x="15" y="15" width="20" height="45"></rect>
+		     <path stroke-width="10" d="M12.5,15 L37.5,15"></path>
+		</g>
+		<g mask="url(#flask-mask)">
+		     <rect fill="#AAA" width="100%" height="100%"></rect>
+		     <rect fill="url(#h2so4)" y="80%" width="100%" height="0%"></rect> 
+		     <rect style="opacity: 0;" fill="url(#result)" y="0%" width="100%" height="100%"></rect> 
+		     <rect class="level-result" style="opacity: 0;" fill="url(#result)" y="0%" width="100%" height="100%"></rect> 
+		</g>
+	</svg>
+</div>
+
+<div disabled="0" class="action-box separatingfunnel" tip="Налить соляную кислоту" onclick="separatingfunnelClick(this)">
+	<svg id="separatingfunnel-svg" viewBox="-7.5 -5 60 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-linecap="round" >
+		<linearGradient id="nacl">
+			<stop offset="5%" stop-color="#FFF"/>
+			<stop offset="95%" stop-color="#777"/>
+		</linearGradient>
+		<linearGradient id="mno2">
+			<stop offset="5%" stop-color="#333"/>
+			<stop offset="95%" stop-color="#000"/>
+		</linearGradient>
+		<linearGradient id="hcl">
+			<stop offset="5%" stop-color="#FFFF0033"/>
+			<stop offset="95%" stop-color="#AAAA0033"/>
+		</linearGradient>
+		<linearGradient id="result">
+			<stop offset="5%" stop-color="#444"/>
+			<stop offset="95%" stop-color="#111"/>
+		</linearGradient>
+		<linearGradient id="cl2">
+			<stop offset="5%" stop-color="#BBB546"/>
+			<stop offset="95%" stop-color="#7F8022"/>
+		</linearGradient>
+
+		<mask id="separatingfunnel-mask">
+		    <g fill="#777" stroke="#777" stroke-width="5">
+		        <path d="M12.5,2.5 L37.5,2.5"></path>
+		        <rect x="20" y="0" width="10" height="40"></rect>
+		        <circle cx="25" cy="30" r="15"/>
+		        <rect x="22.5" y="35" width="5" height="40"></rect>
+		        <rect x="17.5" y="55" width="15" height="2.5"></rect>
+		    </g>
+		    <g fill="#FFF">
+		        <rect x="20" y="0" width="10" height="40"></rect>
+		        <circle cx="25" cy="30" r="15"/>
+		        <rect x="22.5" y="35" width="5" height="40"></rect>
+		        <rect x="17.5" y="55" width="15" height="2.5"></rect>
+		        <path stroke="#777" stroke-width="5" d="M12.5,2.5 L37.5,2.5"></path>
+		    </g>
+		</mask>
+		<g stroke="#333" stroke-width="10">
+		     <path stroke-width="10" d="M12.5,2.5 L37.5,2.5"></path>
+		     <rect x="20" y="5" width="10" height="40"></rect>
+		     <circle cx="25" cy="30" r="15"/>
+		     <rect x="22.5" y="35" width="5" height="40"></rect>
+		     <rect x="17.5" y="55" width="15" height="2.5"></rect>
+		</g>
+		<g mask="url(#separatingfunnel-mask)">
+		     <rect fill="#AAA" width="100%" height="100%"></rect>
+		     <rect fill="url(#h2so4)" y="80%" width="100%" height="0%"></rect> 
+		     <rect style="opacity: 0;" fill="url(#result)" y="0%" width="100%" height="100%"></rect>
+		     <rect id='separatingfunnel-level-hcl' fill="url(#hcl)" y="45%" width="100%" height="0%"></rect>
+		</g>
+	</svg>
+</div>
+</svg>
+</body>
+</html>

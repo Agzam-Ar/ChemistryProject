@@ -1,0 +1,143 @@
+:root {
+    --header-size: 10vh;
+    --main-color: #7221f3;
+}
+
+body {
+    margin: 0;
+}
+
+#header {
+    position: fixed;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;   
+    height: var(--header-size);
+    font-size: calc(var(--header-size) * .5);
+    font-family: sans-serif;
+    background: #151515;
+    color: #EEE;
+
+    box-shadow: 0 0 .2em #00000077;
+
+    z-index: 999999;
+}
+
+#header.small {
+    text-align: left;
+    font-size: calc(var(--header-size) / 4);
+    height: calc(var(--header-size) / 2);
+}
+
+#header, #header > a {
+    color: #FFF;
+    text-decoration: none;
+    transition: .1s ease-out;
+}
+
+#header.small > a {
+    transform: translateX(calc(-50vw + 100%));
+}
+
+#body {
+    font-family: sans-serif;
+    font-size: 125%;
+    margin-top: var(--header-size);
+    background: #EFEFEF;
+    color: #000;
+    padding: 5em 20%;
+}
+
+iframe {
+    border: none;
+    box-shadow: 0 0 1em #00000033;
+    border-radius: .2em;
+    margin: 1em 0;
+    width: 100%;
+    aspect-ratio: 2;
+/*    border: .2em solid var(--main-color);*/
+}
+
+h1 {
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #222;
+    padding-bottom: .1em;
+    border-bottom: .1em #33333333 solid;
+}
+
+#page-visit-and-time-counter {
+    position: fixed;
+/*    z-index: -1 !important;*/
+    pointer-events: none !important;
+/*    width: 25px;*/
+/*    height: 25px;*/
+    tab-index: -1;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+.indexer {
+    position: absolute;
+    height: calc(var(--header-size) + 1em);
+}
+
+.question, .task {
+    display: block;
+    width: calc(100% - 4.2em);
+    background: #FFF;
+
+    box-shadow: 0 0 1em #00000011;
+    padding: 1em 2em;
+    border-radius: 0 .5em .5em 0;
+    margin: 1em 0;
+    border-left: .2em solid var(--main-color);
+}
+
+.question > b {
+    display: block;
+    padding: 0;
+    margin: 0 0 -.5em 0;
+}
+
+code {
+    display: inline-block;
+    background: #DDD;
+    padding: .25em 1em;
+    border-radius: .25em;
+    margin: .25em 0;
+}
+
+.solution {
+    user-select: none !important;
+    color: #DDD;
+}
+
+.solution > * {
+    min-height: 2em;
+    background: #DDD;
+    color: #DDD;
+    transition: .2s ease-in-out;
+    border-radius: 1em;
+}
+
+.solution[show="0"]:hover > * {
+    min-height: 2em;
+    border-radius: 1em;
+    filter: brightness(0.85);
+}
+
+.solution[show="1"]:hover {
+
+}
+
+.solution[show="1"] > * {
+    background: initial;
+    color: initial;
+    border-radius: 1em;
+}

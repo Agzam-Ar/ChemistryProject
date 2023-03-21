@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Интерактиваная химия</title>
+	<script type="text/javascript" src="script.js" defer></script>
+	<script type="text/javascript" src="auth.js" defer></script>
+	<!-- <script type="text/javascript" src="formatter.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div id="header">
+	<div class="title">Химия</div>
+	<div class="box">&MediumSpace;
+		<div class="search-box">
+			<div class="found" hide="true" id="search-results">Agzam</div>
+			<input id="search" type="" name="" placeholder="Поиск" oninput="search(this)" onkeydown="search(this)">
+			&nbsp;
+		</div>
+		<button id="login" onclick="openLogin()">Войти</button></div>
+</div>
+<div id="login-box" visible="0">
+	<div class="login-box">
+		<div class="login-header">
+			<div onclick="selectLoginBody(0)" id="ltab-0" class="tab" style="border-top-left-radius: .5em;">Войти</div>
+			<div onclick="selectLoginBody(1)" id="ltab-1" class="tab" style="border-top-right-radius: .5em;">Создать</div>
+		</div>
+		<div class="login-body" id="login-body-0">
+			<div><label>Почта:</label><input id="login-email" type="text" name="email"></div>
+			<div><label>Пароль:</label><input id="login-password" type="password" name="password"></div>
+			<br>
+			<div><button id="sign" class="button" onclick="login()">Войти</button>&nbsp;<button class="button red" onclick="closeLogin()">Отмена</button></div>
+		</div>
+		<div class="login-body" id="login-body-1">
+			<div><label>Почта:</label><input id="register-email" type="text" name="email"></div>
+			<div><label>Пароль:</label><input id="register-password" type="password" name="password"></div>
+			<div><label>Повтор пароля:</label><input id="register-password-again" type="password" name="password"></div>
+			<br>
+			<div><button id="sign" class="button" onclick="register()">Войти</button>&nbsp;<button class="button red" onclick="closeLogin()">Отмена</button></div>
+		</div>
+	</div>
+</div>
+<div id="body">
+	<h1>Интерактивные заметки</h1>
+
+	<h3>Неметаллы</h3>
+	<table width="100%">
+		<tr>
+			<td>
+				<div class="interactive-note">
+					<b><a href="notes/cl2/">Хлор</a></b>
+					<a href="notes/cl2/#obtaining_chlorine">Получение хлора в лаборатории</a>
+					<a href="notes/cl2/#chlorine_with_metals">Реакция хлора с металлами</a>
+					<a href="notes/cl2/#chlorine_with_kbr">Хлор с бромом</a>
+					<a href="notes/cl2/">Text</a>
+				</div>
+			</td>
+			<td>
+				<div class="interactive-note">
+					<b><a href="notes/cl2/">Кислород</a></b>
+					<a href="soon">Text</a>
+					<a href="soon">Text</a>
+					<a href="soon">Text</a>
+					<a href="soon">Text</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+		</tr>
+	</table>
+	<br>
+<h1>Редакторы</h1>
+Для создания контрольных работ и печати их предлагается использовать <a href="">веб редактор</a>
+Для написания своих материалов и публикации их на сайте, нужна авторизация
+<br><br>
+
+<h1>О сервисе</h1>
+Данный сервис включает в себя обучающие материалы, с интерактивными элементами, возможность создание своих материалов, и многое другое<br>
+Упрощенный дизайн элеменов интерфейса, а так же самих интерактивный заданий позволяет легче запоминать материал, а так же структурировать запоминаемую информацию<br>
+Сервис может быть полезен на уроках в школе, а так же использоваться для самообучения<br>
+В дальнейшем планируется развивать данный проект, добавляя новые материалы и расширяя функционал сервиса
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<div id="info-box">
+	<table>
+		<tr>
+			<td>Арасланов Агзам Вадимович</td>
+		</tr>
+		<tr>
+			<td>Мальцева Елена Александровна <i>(Преподаватель химии)</i></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>
